@@ -1,0 +1,16 @@
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\WatchDog.exe
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\WatchDog.deps.json
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\WatchDog.runtimeconfig.json
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\WatchDog.dll
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\WatchDog.pdb
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.Form1.resources
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.csproj.GenerateResource.cache
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.AssemblyInfoInputs.cache
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.AssemblyInfo.cs
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.csproj.CoreCompileInputs.cache
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.dll
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\refint\WatchDog.dll
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.pdb
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.genruntimeconfig.cache
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\ref\WatchDog.dll
