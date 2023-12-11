@@ -34,13 +34,12 @@
             StatusColumn = new ColumnHeader();
             CPUColumn = new ColumnHeader();
             MemoryColumn = new ColumnHeader();
-            DiskColumn = new ColumnHeader();
-            NetworkColumn = new ColumnHeader();
+            RuntimeColumn = new ColumnHeader();
             SuspendLayout();
             // 
             // ProcessListView
             // 
-            ProcessListView.Columns.AddRange(new ColumnHeader[] { PidColumn, ProcessNameColumn, StatusColumn, CPUColumn, MemoryColumn, DiskColumn, NetworkColumn });
+            ProcessListView.Columns.AddRange(new ColumnHeader[] { PidColumn, ProcessNameColumn, StatusColumn, CPUColumn, MemoryColumn, RuntimeColumn });
             ProcessListView.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             ProcessListView.FullRowSelect = true;
             ProcessListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -55,12 +54,12 @@
             // PidColumn
             // 
             PidColumn.Text = "PID";
-            PidColumn.Width = 100;
+            PidColumn.Width = 110;
             // 
             // ProcessNameColumn
             // 
             ProcessNameColumn.Text = "Process";
-            ProcessNameColumn.Width = 170;
+            ProcessNameColumn.Width = 215;
             // 
             // StatusColumn
             // 
@@ -71,25 +70,19 @@
             // 
             CPUColumn.Text = "CPU";
             CPUColumn.TextAlign = HorizontalAlignment.Right;
-            CPUColumn.Width = 100;
+            CPUColumn.Width = 115;
             // 
             // MemoryColumn
             // 
             MemoryColumn.Text = "Memory";
             MemoryColumn.TextAlign = HorizontalAlignment.Right;
-            MemoryColumn.Width = 100;
+            MemoryColumn.Width = 115;
             // 
-            // DiskColumn
+            // RuntimeColumn
             // 
-            DiskColumn.Text = "Disk";
-            DiskColumn.TextAlign = HorizontalAlignment.Right;
-            DiskColumn.Width = 100;
-            // 
-            // NetworkColumn
-            // 
-            NetworkColumn.Text = "Network";
-            NetworkColumn.TextAlign = HorizontalAlignment.Right;
-            NetworkColumn.Width = 100;
+            RuntimeColumn.Text = "RunTime";
+            RuntimeColumn.TextAlign = HorizontalAlignment.Right;
+            RuntimeColumn.Width = 115;
             // 
             // Form1
             // 
@@ -110,7 +103,6 @@
         private ColumnHeader StatusColumn;
         private ColumnHeader CPUColumn;
         private ColumnHeader MemoryColumn;
-        private ColumnHeader DiskColumn;
-        private ColumnHeader NetworkColumn;
+        private ColumnHeader RuntimeColumn;
     }
 }

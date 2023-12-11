@@ -12,22 +12,22 @@ namespace WatchDog.ProcessController
         private string Status { get; set; } = String.Empty;
         private string CPU { get; set; } = String.Empty;
         private string Memory { get; set; } = String.Empty;
-        private string Disk { get; set; } = String.Empty;
-        private string Network { get; set; } = String.Empty;
+        private string RunTime { get; set; } = String.Empty;
 
-        public Process(string ProcessName, string Status, string CPU, string Memory, string Disk, string Network)
+        public Process(string ProcessName, string Status, string CPU, string Memory, string RunTime)
         {
             this.ProcessName = ProcessName;
             this.Status = Status;
             this.CPU = CPU;
             this.Memory = Memory;
-            this.Disk = Disk;
-            this.Network = Network;
+            this.RunTime = RunTime;
         }
 
-        public Process(string ProcessName)
+        public Process(string CPU, string Memory, string RunTime)
         {
-            this.ProcessName = ProcessName;
+            this.CPU = CPU;
+            this.Memory = Memory;
+            this.RunTime = RunTime;
         }
 
         public Func<string> GetProcessName => () => ProcessName;
@@ -38,8 +38,6 @@ namespace WatchDog.ProcessController
 
         public Func<string> GetMemory => () => Memory;
 
-        public Func<string> GetDisk => () => Disk;
-
-        public Func<string> GetNetwork => () => Network;
+        public Func<string> GetRunTime => () => RunTime;
     }
 }
