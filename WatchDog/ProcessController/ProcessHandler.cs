@@ -4,28 +4,30 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WatchDog.DictionaryController;
 
 namespace WatchDog.ProcessController
 {
     public class ProcessHandler
     {
-        private Dictionary<int, Process> ProcessDictionary = new Dictionary<int, Process>();
-        private System.Diagnostics.Process CurrentProcess;
-        private ListView ProcessListView;
+        private System.Diagnostics.Process currentProcess;
+        private ListView processListView;
+        private ProcessDataHandler processDataHandler = new ProcessDataHandler();
 
-        public ProcessHandler(ListView ProcessListView)
+        public ProcessHandler(ListView processListView)
         {
-            this.ProcessListView = ProcessListView;
+            this.processListView = processListView;
+
             Run();
+            Update();
         }
 
         private void Run()
         {
             System.Diagnostics.Process[] runningProcesses = System.Diagnostics.Process.GetProcesses();
 
-            
 
-            if(ProcessDictionary.Count < runningProcesses.Length)
+            if(DictionaryHandler.ProcessDictionary.Count < runningProcesses.Length)
             {
                 foreach(var runningProcess in runningProcesses)
                 {
@@ -33,9 +35,9 @@ namespace WatchDog.ProcessController
                     {
                         int processId = runningProcess.Id;
 
-                        if (!ProcessDictionary.ContainsKey(processId))
+                        if (!DictionaryHandler.ProcessDictionary.ContainsKey(processId))
                         {
-                            CurrentProcess = runningProcess;
+                            currentProcess = runningProcess;
                             AddToDictionary();
                         }
                     }
@@ -43,62 +45,31 @@ namespace WatchDog.ProcessController
                 }
             }
 
-            foreach(var key in ProcessDictionary.Keys)
+        }
+
+        private void Update()
+        {
+            foreach(var key in DictionaryHandler.ProcessDictionary.Keys)
             {
                 ListViewItem listViewItem = new ListViewItem(key.ToString());
-                listViewItem.SubItems.Add(ProcessDictionary[key].GetProcessName());
-                listViewItem.SubItems.Add(ProcessDictionary[key].GetStatus());
-                listViewItem.SubItems.Add(ProcessDictionary[key].GetCPU());
-                listViewItem.SubItems.Add(ProcessDictionary[key].GetMemory());
-                listViewItem.SubItems.Add(ProcessDictionary[key].GetRunTime());
+                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetProcessName());
+                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetStatus());
+                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetPriority());
+                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetMemory());
+                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetRunTime());
 
-                ProcessListView.Items.Add(listViewItem);
+                processListView.Items.Add(listViewItem);
             }
-
         }
 
         private void AddToDictionary()
         {
-            int ProcessId = CurrentProcess.Id;
-            string ProcessName = CurrentProcess.ProcessName;
-            string Status = "Active";
-            string CPU = GetProcessorUsage(ProcessName).ToString();
-            string Memory = GetMemoryUsage().ToString("0.00");
-            string RunTime = GetProcessRunTime().ToString();
+            int processId = currentProcess.Id;
+            string processName = currentProcess.ProcessName;
+            (string priority, string memory, string runTime) = processDataHandler.GetProcessData(currentProcess);
 
 
-            ProcessDictionary.Add(ProcessId, new Process(ProcessName, Status, CPU, Memory, RunTime));
-        }
-
-        private double GetMemoryUsage()
-        {
-            double memoryUsageMegaBytes = (CurrentProcess.WorkingSet64) / (1024 * 1024);
-
-            return memoryUsageMegaBytes;
-        }
-
-        private double GetProcessorUsage(string ProcessName)
-        {
-            PerformanceCounter performanceCounter = new PerformanceCounter("Process", "% Processor Time", ProcessName,true);
-
-            //float processorUsage = performanceCounter.NextValue();
-
-            //return Math.Round(processorUsage / Environment.ProcessorCount, 2);
-
-            ////return processorUsage / (Environment.ProcessorCount, 2);
-           
-            double rawValue1 = performanceCounter.NextValue();
-            Thread.Sleep(250);
-
-            // Calculate the percentage by considering the elapsed time and the number of processor cores
-
-
-            return Math.Round(rawValue1);
-        }
-
-        private int GetProcessRunTime()
-        {
-            return 2;
+            DictionaryHandler.AddToDictionary(processId, new Process(processName, "Active", priority, memory, runTime));
         }
 
     }

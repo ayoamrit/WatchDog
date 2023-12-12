@@ -32,14 +32,14 @@
             PidColumn = new ColumnHeader();
             ProcessNameColumn = new ColumnHeader();
             StatusColumn = new ColumnHeader();
-            CPUColumn = new ColumnHeader();
+            PriorityColumn = new ColumnHeader();
             MemoryColumn = new ColumnHeader();
             RuntimeColumn = new ColumnHeader();
             SuspendLayout();
             // 
             // ProcessListView
             // 
-            ProcessListView.Columns.AddRange(new ColumnHeader[] { PidColumn, ProcessNameColumn, StatusColumn, CPUColumn, MemoryColumn, RuntimeColumn });
+            ProcessListView.Columns.AddRange(new ColumnHeader[] { PidColumn, ProcessNameColumn, StatusColumn, PriorityColumn, MemoryColumn, RuntimeColumn });
             ProcessListView.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             ProcessListView.FullRowSelect = true;
             ProcessListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -66,11 +66,11 @@
             StatusColumn.Text = "Status";
             StatusColumn.Width = 100;
             // 
-            // CPUColumn
+            // PriorityColumn
             // 
-            CPUColumn.Text = "CPU";
-            CPUColumn.TextAlign = HorizontalAlignment.Right;
-            CPUColumn.Width = 115;
+            PriorityColumn.Text = "Priority";
+            PriorityColumn.TextAlign = HorizontalAlignment.Right;
+            PriorityColumn.Width = 115;
             // 
             // MemoryColumn
             // 
@@ -101,7 +101,7 @@
         private ColumnHeader PidColumn;
         private ColumnHeader ProcessNameColumn;
         private ColumnHeader StatusColumn;
-        private ColumnHeader CPUColumn;
+        private ColumnHeader PriorityColumn;
         private ColumnHeader MemoryColumn;
         private ColumnHeader RuntimeColumn;
     }
