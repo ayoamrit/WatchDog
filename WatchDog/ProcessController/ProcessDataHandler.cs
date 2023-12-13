@@ -17,13 +17,14 @@ namespace WatchDog.ProcessController
         /// </summary>
         /// <param name="currentProcess">The system process for which data is to be retrieved.</param>
         /// <returns>A tuple containing process priority class, memory usage, and run time</returns>
-        public (string, string, string) GetProcessData(System.Diagnostics.Process currentProcess)
+        public (string, string, string, string) GetProcessData(System.Diagnostics.Process currentProcess)
         {
-            string processPriority = currentProcess.PriorityClass.ToString();
-            string processRunTime = currentProcess.StartTime.ToString("hh:mm:ss");
+            string processId = currentProcess.Id.ToString();
+            string processName = currentProcess.ProcessName.ToString();
+            string processWindowTitle = currentProcess.MainWindowTitle;
             string processMemoryUsage = (currentProcess.WorkingSet64 / (1024 * 1024)).ToString("0.00");
 
-            return (processPriority, processMemoryUsage, processRunTime);
+            return (processId, processName, processWindowTitle, processMemoryUsage);
         }
     }
 }

@@ -31,15 +31,18 @@
             ProcessListView = new ListView();
             PidColumn = new ColumnHeader();
             ProcessNameColumn = new ColumnHeader();
-            StatusColumn = new ColumnHeader();
-            PriorityColumn = new ColumnHeader();
+            WindowTitleColumn = new ColumnHeader();
             MemoryColumn = new ColumnHeader();
-            RuntimeColumn = new ColumnHeader();
+            EndTaskButton = new Button();
+            CPUButton = new Button();
+            RAMButton = new Button();
+            SystemButton = new Button();
             SuspendLayout();
             // 
             // ProcessListView
             // 
-            ProcessListView.Columns.AddRange(new ColumnHeader[] { PidColumn, ProcessNameColumn, StatusColumn, PriorityColumn, MemoryColumn, RuntimeColumn });
+            ProcessListView.BorderStyle = BorderStyle.None;
+            ProcessListView.Columns.AddRange(new ColumnHeader[] { PidColumn, ProcessNameColumn, WindowTitleColumn, MemoryColumn });
             ProcessListView.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             ProcessListView.FullRowSelect = true;
             ProcessListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -54,41 +57,69 @@
             // PidColumn
             // 
             PidColumn.Text = "PID";
-            PidColumn.Width = 110;
+            PidColumn.Width = 115;
             // 
             // ProcessNameColumn
             // 
             ProcessNameColumn.Text = "Process";
-            ProcessNameColumn.Width = 215;
+            ProcessNameColumn.Width = 220;
             // 
-            // StatusColumn
+            // WindowTitleColumn
             // 
-            StatusColumn.Text = "Status";
-            StatusColumn.Width = 100;
-            // 
-            // PriorityColumn
-            // 
-            PriorityColumn.Text = "Priority";
-            PriorityColumn.TextAlign = HorizontalAlignment.Right;
-            PriorityColumn.Width = 115;
+            WindowTitleColumn.Text = "WindowTitle";
+            WindowTitleColumn.Width = 310;
             // 
             // MemoryColumn
             // 
             MemoryColumn.Text = "Memory";
             MemoryColumn.TextAlign = HorizontalAlignment.Right;
-            MemoryColumn.Width = 115;
+            MemoryColumn.Width = 129;
             // 
-            // RuntimeColumn
+            // EndTaskButton
             // 
-            RuntimeColumn.Text = "RunTime";
-            RuntimeColumn.TextAlign = HorizontalAlignment.Right;
-            RuntimeColumn.Width = 115;
+            EndTaskButton.Location = new Point(698, 344);
+            EndTaskButton.Name = "EndTaskButton";
+            EndTaskButton.Size = new Size(113, 38);
+            EndTaskButton.TabIndex = 1;
+            EndTaskButton.Text = "End Task";
+            EndTaskButton.UseVisualStyleBackColor = true;
+            // 
+            // CPUButton
+            // 
+            CPUButton.Location = new Point(37, 344);
+            CPUButton.Name = "CPUButton";
+            CPUButton.Size = new Size(113, 38);
+            CPUButton.TabIndex = 2;
+            CPUButton.Text = "CPU";
+            CPUButton.UseVisualStyleBackColor = true;
+            // 
+            // RAMButton
+            // 
+            RAMButton.Location = new Point(156, 344);
+            RAMButton.Name = "RAMButton";
+            RAMButton.Size = new Size(113, 38);
+            RAMButton.TabIndex = 3;
+            RAMButton.Text = "RAM";
+            RAMButton.UseVisualStyleBackColor = true;
+            // 
+            // SystemButton
+            // 
+            SystemButton.Location = new Point(275, 344);
+            SystemButton.Name = "SystemButton";
+            SystemButton.Size = new Size(113, 38);
+            SystemButton.TabIndex = 4;
+            SystemButton.Text = "System";
+            SystemButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(866, 682);
+            Controls.Add(SystemButton);
+            Controls.Add(RAMButton);
+            Controls.Add(CPUButton);
+            Controls.Add(EndTaskButton);
             Controls.Add(ProcessListView);
             Name = "Form1";
             Text = "WatchDog";
@@ -100,9 +131,11 @@
         private ListView ProcessListView;
         private ColumnHeader PidColumn;
         private ColumnHeader ProcessNameColumn;
-        private ColumnHeader StatusColumn;
-        private ColumnHeader PriorityColumn;
+        private ColumnHeader WindowTitleColumn;
         private ColumnHeader MemoryColumn;
-        private ColumnHeader RuntimeColumn;
+        private Button EndTaskButton;
+        private Button CPUButton;
+        private Button RAMButton;
+        private Button SystemButton;
     }
 }

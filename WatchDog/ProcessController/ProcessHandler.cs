@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WatchDog.DictionaryController;
+using System.Windows.Forms.VisualStyles;
 
 namespace WatchDog.ProcessController
 {
@@ -12,64 +12,58 @@ namespace WatchDog.ProcessController
     {
         private System.Diagnostics.Process currentProcess;
         private ListView processListView;
+        private IEnumerable<System.Diagnostics.Process> runningProcesses = null;
         private ProcessDataHandler processDataHandler = new ProcessDataHandler();
 
         public ProcessHandler(ListView processListView)
         {
             this.processListView = processListView;
 
-            Run();
-            Update();
+            while (true)
+            {
+                Run();
+            }
         }
 
         private void Run()
         {
-            System.Diagnostics.Process[] runningProcesses = System.Diagnostics.Process.GetProcesses();
+            runningProcesses = System.Diagnostics.Process.GetProcesses();
 
-
-            if(DictionaryHandler.ProcessDictionary.Count < runningProcesses.Length)
+            foreach (var process in runningProcesses)
             {
-                foreach(var runningProcess in runningProcesses)
+
+                if (!String.IsNullOrEmpty(process.MainWindowTitle))
                 {
-                    if (!String.IsNullOrEmpty(runningProcess.MainWindowTitle))
-                    {
-                        int processId = runningProcess.Id;
+                    currentProcess = process;
 
-                        if (!DictionaryHandler.ProcessDictionary.ContainsKey(processId))
-                        {
-                            currentProcess = runningProcess;
-                            AddToDictionary();
-                        }
-                    }
-
+                    processListView.Invoke((Action)Update);
                 }
             }
+
+            Thread.Sleep(5000);
+            processListView.Invoke((Action)ClearProcessList);
+            DesignHandler.ResetRowNumber();
+            runningProcesses = null;
 
         }
 
         private void Update()
         {
-            foreach(var key in DictionaryHandler.ProcessDictionary.Keys)
-            {
-                ListViewItem listViewItem = new ListViewItem(key.ToString());
-                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetProcessName());
-                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetStatus());
-                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetPriority());
-                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetMemory());
-                listViewItem.SubItems.Add(DictionaryHandler.ProcessDictionary[key].GetRunTime());
+            (string processId, string processName, string processWindowTitle, string memory) = processDataHandler.GetProcessData(currentProcess);
 
-                processListView.Items.Add(listViewItem);
-            }
+
+            ListViewItem listViewItem = new ListViewItem(processId);
+            listViewItem.SubItems.Add(processName);
+            listViewItem.SubItems.Add(processWindowTitle);
+            listViewItem.SubItems.Add(memory);
+
+            new DesignHandler(listViewItem);
+            processListView.Items.Add(listViewItem);
         }
 
-        private void AddToDictionary()
+        private void ClearProcessList()
         {
-            int processId = currentProcess.Id;
-            string processName = currentProcess.ProcessName;
-            (string priority, string memory, string runTime) = processDataHandler.GetProcessData(currentProcess);
-
-
-            DictionaryHandler.AddToDictionary(processId, new Process(processName, "Active", priority, memory, runTime));
+            processListView.Items.Clear();
         }
 
     }

@@ -8,7 +8,12 @@ namespace WatchDog
         {
             InitializeComponent();
 
-            ProcessHandler processHandler = new ProcessHandler(ProcessListView);
+            Thread processThread = new Thread(() =>
+            {
+                ProcessHandler processHandler = new ProcessHandler(ProcessListView);
+            });
+
+            processThread.Start();
         }
 
     }
