@@ -124,6 +124,8 @@
             Name = "Form1";
             Text = "WatchDog";
             ResumeLayout(false);
+
+            this.FormClosing += CloseForm;
         }
 
         #endregion
