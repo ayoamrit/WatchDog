@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Xmze/EZ/sJq5Qr7H1ZfgvjGiSoBWH05PmRzn/oYv6qpj9hs5mLOZeYDcHsDJrvhT2/kkaHo5kdeu+LoDg+14FA==",
+  "dgSpecHash": "MIHpr1bDLhpXv9C3TllnqixTZBYoGiMLjRuRzdkmI4eJ4ZaRn8/yUlbL9OZd2v5UcoeF5kfFXj4HI6Ck6XtxQQ==",
   "success": true,
   "projectFilePath": "D:\\Project\\WatchDog\\WatchDog\\WatchDog.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\AMRIT\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
+    "C:\\Users\\AMRIT\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
