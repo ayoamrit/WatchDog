@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WatchDog.ExceptionHandler
 {
-    public class ThreadAbortException : IOException
+    public class TerminateTaskException : Exception
     {
-        public ThreadAbortException() : base("Thread has been aborted")
+        public TerminateTaskException(string message) : base(message)
         {
 
         }

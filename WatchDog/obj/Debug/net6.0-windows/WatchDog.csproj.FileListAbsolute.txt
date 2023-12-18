@@ -14,3 +14,8 @@ D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\refint\WatchDog.dll
 D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.pdb
 D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.genruntimeconfig.cache
 D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\ref\WatchDog.dll
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\System.CodeDom.dll
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\System.Management.dll
+D:\Project\WatchDog\WatchDog\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Management.dll
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.csproj.AssemblyReference.cache
+D:\Project\WatchDog\WatchDog\obj\Debug\net6.0-windows\WatchDog.csproj.CopyComplete
